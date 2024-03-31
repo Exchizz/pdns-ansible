@@ -83,6 +83,7 @@ platforms:
     image: postgres:16.2
     env:
       POSTGRES_PASSWORD: pdns
+      POSTGRES_HOST_AUTH_METHOD: "md5"
     # Declaring the container as service,
     # will link it to the others Platforms containers
     # on creation.
