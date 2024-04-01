@@ -125,5 +125,6 @@ verifier:
     - ../repo-master/
     - ../backend-sqlite/
     - ../backend-mysql/
+    - ../backend-pgsql/
     - ../systemd-override/
 

@@ -128,5 +128,6 @@ verifier:
     - ../repo-47/
     - ../backend-sqlite/
     - ../backend-mysql/
+    - ../backend-pgsql/
     - ../systemd-override/
 
