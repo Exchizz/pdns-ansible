@@ -59,6 +59,7 @@
     roles: "{{ item['value']['user'] }}"
   when: "item.key.split(':')[0] == 'gpgsql'"
   with_dict: "{{ pdns_backends | combine(pdns_pgsql_databases_credentials, recursive=True) }}"
+  changed_when: False
 
 - name: Check if the PostgreSQL databases are empty
   community.general.postgresql_query:
