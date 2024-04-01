@@ -55,11 +55,10 @@
         image: "molecule_pdns/{{ item.image }}"
         links: "{{ molecule_service_instances | map(attribute='name') | list }}"
         command: "{{ item.command | default(omit) }}"
-        cgroupns_mode: "host"
         state: started
         recreate: False
         privileged: "yes"
         volumes:
           # Mount the cgroups fs to allow SystemD to run into the containers
-          - "/sys/fs/cgroup:/sys/fs/cgroup:rw"
+          - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
       with_items: "{{ molecule_platform_instances }}"
