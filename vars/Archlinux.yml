@@ -17,7 +17,7 @@ pdns_mysql_packages:
 # Packages to install for PostgreSQL support
 pdns_pgsql_packages:
   - postgresql
-  - python3-psycopg2
+  - python-psycopg2
 
 # Other defaults
 pdns_user: powerdns
