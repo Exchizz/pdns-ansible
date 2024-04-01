@@ -31,7 +31,7 @@
   when: "item.key.split(':')[0] == 'gpgsql'"
   with_dict: "{{ pdns_backends | combine(pdns_pgsql_databases_credentials, recursive=True) }}"
 
-- name: Grant role schema create
+- name: Grant PowerDNS access to PostgreSQL schema
   community.postgresql.postgresql_privs:
     login_user: "{{ item['value']['priv_user'] }}"
     login_password: "{{ item['value']['priv_password'] }}"
@@ -44,9 +44,8 @@
     roles: "{{ item['value']['user'] }}"
   when: "item.key.split(':')[0] == 'gpgsql'"
   with_dict: "{{ pdns_backends | combine(pdns_pgsql_databases_credentials, recursive=True) }}"
-  register: debugging
 
-- name: Grant privs to librarian and reader on database library
+- name: Grant PowerDNS access to PostgreSQL database
   community.postgresql.postgresql_privs:
     login_user: "{{ item['value']['priv_user'] }}"
     login_password: "{{ item['value']['priv_password'] }}"
