@@ -100,9 +100,6 @@
   set_fact:
     pdns_pgsql_schema_file_to_use: "{% if pdns_pgsql_schema_file | length == 0 %}{{ pdns_pgsql_schema_file_detected.stdout }}{% else %}{{ pdns_pgsql_schema_file }}{% endif %}"
 
-- debug:
-    var: _pdns_check_pgsql_db
-
 - name: Import the PowerDNS PostgreSQL schema
   community.general.postgresql_db:
     login_user: "{{ item['item']['value']['user'] }}"
