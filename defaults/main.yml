@@ -151,6 +151,16 @@ pdns_pgsql_databases_credentials: {}
 #     'priv_host':
 #       - "localhost"
 
+# Path to postgres unix socket. 
+# This is used for creating PowerDNS Authoritative Server database and user when the PostgreSQL server
+# is running on the same host as PowerDNS
+pdns_pgsql_unix_socket: "/var/run/postgresql"
+
+
+# Name of the user the PostgreSQL server is running as. This is used when the PostgreSQL server
+# is running on the same server as PowerDNS Authoritative Server
+pdns_pgsql_user: "postgres"
+
 # This will create the PowerDNS Authoritative Server backend SQLite database
 # in the given locations.
 # NOTE: Requries the SQLite CLI tools to be available in the machine and the gsqlite3
