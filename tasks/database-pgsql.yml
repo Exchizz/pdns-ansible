@@ -8,7 +8,7 @@
   community.general.postgresql_user:
     login_user: "{{ item['value']['priv_user'] }}"
     login_password: "{{ item['value']['priv_password'] | default(omit) }}"
-    login_host: "{{ item['value']['host'] | default('localhost') }}"
+    login_host: "{{ item['value']['host'] | default(omit) }}"
     port: "{{ item['value']['port'] | default(omit) }}"
     name: "{{ item['value']['user'] }}"
     login_unix_socket: "{{ pdns_pgsql_unix_socket }}"
