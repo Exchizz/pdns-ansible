@@ -8,14 +8,14 @@
   community.general.postgresql_user:
     login_user: "{{ item['value']['priv_user'] }}"
     login_password: "{{ item['value']['priv_password'] | default(omit) }}"
-    login_host: "{{ item['value']['host'] | default(omit) }}"
+    login_host: "{{ item['value']['priv_host'] | default(omit) }}"
     port: "{{ item['value']['port'] | default(omit) }}"
     name: "{{ item['value']['user'] }}"
     login_unix_socket: "{{ pdns_pgsql_unix_socket }}"
     password: "{{ item['value']['password'] }}"
     state: present
   throttle: 1
-  become: "{{ 'no' if item['value']['host'] is defined else 'yes' }}"
+  become: "{{ 'no' if item['value']['priv_host'] is defined else 'yes' }}"
   become_user: "{{ pdns_pgsql_user }}"
   when: "item.key.split(':')[0] == 'gpgsql'"
   with_dict: "{{ pdns_backends | combine(pdns_pgsql_databases_credentials, recursive=True) }}"
@@ -25,14 +25,14 @@
     login_user: "{{ item['value']['priv_user'] }}"
     login_password: "{{ item['value']['priv_password'] | default(omit) }}"
     login_unix_socket: "{{ pdns_pgsql_unix_socket }}"
-    login_host: "{{ item['value']['host'] | default('localhost') }}"
-    port: "{{ item['value']['priv_port'] | default(5432) }}"
+    login_host: "{{ item['value']['priv_host'] | default(omit) }}"
+    port: "{{ item['value']['priv_port'] | default(omit) }}"
     name: "{{ item['value']['dbname'] }}"
     state: present
     owner: "{{ item['value']['user'] }}"
   when: "item.key.split(':')[0] == 'gpgsql'"
   with_dict: "{{ pdns_backends | combine(pdns_pgsql_databases_credentials, recursive=True) }}"
-  become: "{{ 'no' if item['value']['host'] is defined else 'yes' }}"
+  become: "{{ 'no' if item['value']['priv_host'] is defined else 'yes' }}"
   become_user: "{{ pdns_pgsql_user }}"
 
 - name: Check if the PostgreSQL databases are empty
