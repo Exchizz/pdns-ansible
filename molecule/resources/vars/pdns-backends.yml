@@ -34,4 +34,4 @@ pdns_pgsql_databases_credentials:
   gpgsql:
     priv_user: postgres
     priv_password: "{{ ansible_env.MYSQL_ENV_MYSQL_ROOT_PASSWORD }}"  # The PgSQL root password
-                                                                      # is injected by Docker into the env
+    priv_host: "pgsql"                                                # is injected by Docker into the env
